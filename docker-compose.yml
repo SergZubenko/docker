@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  docker-be:
+    build: docker-be
+    image: docker-be
+    restart: always
+    networks:
+      - febe
+  docker-fe:
+      build: docker-fe
+      image: docker-fe
+      restart: always
+      ports:
+        - 3200:80
+      networks:
+            - febe
+      depends_on:
+            - docker-be
+networks:
+  febe:
